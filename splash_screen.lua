@@ -32,6 +32,16 @@ local function gotoMainMenu()
     composer.gotoScene( "main_menu" )
 end 
 
+local function PopUp()
+
+    -- make the logo visible 
+    transition.to(logo1,{alpha = 0 , time = 500} )
+    transition.to(logo2, {alpha = 1, time = 500})
+    transition.to(logo2, {alpha = 0, time = 1100})
+    transition.to(logo3, {alpha = 1, time = 1000})
+end
+
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -71,18 +81,6 @@ function scene:create( event )
 
 end -- function scene:create( event )
 ---------------------------------------------
-function PopUp()
-
-    -- make the logo visible 
-    transition.to(logo1,{alpha = 0 , time = 500} )
-    transition.to(logo2, {alpha = 1, time = 500})
-    transition.to(logo2, {alpha = 0, time = 1100})
-    transition.to(logo3, {alpha = 1, time = 1000})
-end
-
-timer.performWithDelay(1000, PopUp)
-
-
 
 --------------------------------------------------------------------------------------------
 
@@ -107,7 +105,7 @@ function scene:show( event )
         -- start the splash screen music
         phoenixSoundsChannel = audio.play( phoenixSounds )
 
- 
+        timer.performWithDelay(1000, PopUp)
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 3000, gotoMainMenu)          

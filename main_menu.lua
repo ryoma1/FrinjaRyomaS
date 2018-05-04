@@ -6,14 +6,20 @@
 --hide status bar
 display.setStatusBar(display.HiddenStatusBar)
 ----------------------------------------------
---local variables
+-- Use Composer Library
+local composer = require( "composer" )
 
+-- Name the Scene
+sceneName = "main_menu"
+
+--local variables
 local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
 local songSounds = audio.loadSound("Sounds/song.mp3")
 local songSoundsChannel
+
 ----------------------------------------
 --play background music
 
@@ -30,7 +36,7 @@ end
 
 --Creating transition to instructions
 local function InstructionsScreenTransition( )
-    composer.gotoScene( "instructions", {effect = "zoomInOutFade", time = 1000})
+    composer.gotoScene( "instructions_screen", {effect = "zoomInOutFade", time = 1000})
 end 
 
 -----------------------------------------------------------------------------------------
@@ -43,30 +49,30 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
-    -- BACKGROUND IMAGE & STATIC OBJECTS
-    -----------------------------------------------------------------------------------------
+    	-----------------------------------------------------------------------------------------
+    	-- BACKGROUND IMAGE & STATIC OBJECTS
+    	-----------------------------------------------------------------------------------------
 
-    -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/MainMenuBassimH.png")
-    bkg_image.x = display.contentCenterX
-    bkg_image.y = display.contentCenterY
-    bkg_image.width = display.contentWidth
-    bkg_image.height = display.contentHeight
+    	-- Insert the background image and set it to the center of the screen
+    	bkg_image = display.newImage("Images/MainMenuBassimH.png")
+    	bkg_image.x = display.contentCenterX
+    	bkg_image.y = display.contentCenterY
+    	bkg_image.width = display.contentWidth
+    	bkg_image.height = display.contentHeight
 
 
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg_image )
+   	 	-- Associating display objects with this scene 
+   	 	sceneGroup:insert( bkg_image )
 
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
+    	-- Send the background image to the back layer so all other objects can be on top
+   	 	bkg_image:toBack()
 
-    -----------------------------------------------------------------------------------------
-    -- BUTTON WIDGETS
-    -----------------------------------------------------------------------------------------   
+    	-----------------------------------------------------------------------------------------
+    	-- BUTTON WIDGETS
+    	-----------------------------------------------------------------------------------------   
 
-    -- Creating Play Button
-    playButton = widget.newButton( 
+    	-- Creating Play Button
+    	playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth/2,
@@ -80,10 +86,10 @@ function scene:create( event )
             onRelease = Level1ScreenTransition          
         } )
 
-    -----------------------------------------------------------------------------------------
+    	-----------------------------------------------------------------------------------------
 
-    -- Creating Credits Button
-    creditsButton = widget.newButton( 
+    	-- Creating Credits Button
+    	creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth*7/8,
@@ -97,9 +103,9 @@ function scene:create( event )
             onRelease = CreditsTransition
         } ) 
     
-    -- ADD INSTRUCTIONS BUTTON WIDGET
+   	 	-- ADD INSTRUCTIONS BUTTON WIDGET
 
-    --Creating instructions button
+    	--Creating instructions button
         instructionsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
@@ -115,17 +121,15 @@ function scene:create( event )
         } ) 
     
 
-    -----------------------------------------------------------------------------------------
+   	 -----------------------------------------------------------------------------------------
 
-    -- Associating button widgets with this scene
-    sceneGroup:insert( playButton )
-    sceneGroup:insert( creditsButton )
-    sceneGroup:insert( instructionsButton )
-    
-    -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-
-end -- function scene:create( event )   
-
+    	-- Associating button widgets with this scene
+    	sceneGroup:insert( playButton )
+    	sceneGroup:insert( creditsButton )
+    	sceneGroup:insert( instructionsButton )
+    	
+	end 
+end
 
 
 -----------------------------------------------------------------------------------------
@@ -151,8 +155,8 @@ function scene:show( event )
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
     elseif ( phase == "did" ) then
-    --play background music
-    songSoundsChannel = audio.play( songSounds )       
+    	--play background music
+    	songSoundsChannel = audio.play( songSounds )       
         
 
     end
