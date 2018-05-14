@@ -1,4 +1,4 @@
--- Title: main_menu.lua
+-- Title: main_menu2.lua
 -- Name: Ryoma Scott
 -- Course: ICS2O/3C
 -- This program...
@@ -6,11 +6,11 @@
 --hide status bar
 display.setStatusBar(display.HiddenStatusBar)
 ----------------------------------------------
--- Use Composer Library
-local composer = require( "composer" )
 
--- Name the Scene
-sceneName = "main_menu"
+local composer = require( "composer" )
+sceneName = "main_menu2"
+ 
+local scene = composer.newScene(sceneName)
 
 --local variables
 local bkg_image
@@ -156,7 +156,7 @@ function scene:show( event )
     -- Example: start timers, begin animation, play audio, etc.
     elseif ( phase == "did" ) then
     	--play background music
-    	songSoundsChannel = audio.play( songSounds )       
+    	--songSoundsChannel = audio.play( songSounds )       
         
 
     end
@@ -186,8 +186,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
-        audio.stop(songSoundsChannel)
-
+        --audio.stop(songSoundsChannel)
     end
 
 end -- function scene:hide( event )

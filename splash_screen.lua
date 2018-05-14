@@ -1,6 +1,5 @@
 -----------------------------------------------------------------------------------------
---hide status bar
-display.setStatusBar(display.HiddenStatusBar)
+
 -----------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
@@ -13,6 +12,8 @@ sceneName = "splash_screen"
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
 
+--hide status bar
+display.setStatusBar(display.HiddenStatusBar)
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ local phoenixSoundsChannel
 --------------------------------------------------------------------------------------------
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene( "main_menu" )
+    composer.gotoScene( "main_menu2" )
 end 
 
 local function PopUp()
@@ -108,7 +109,7 @@ function scene:show( event )
         timer.performWithDelay(1000, PopUp)
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 3000, gotoMainMenu)          
+        timer.performWithDelay ( 3000, gotoMainMenu2)          
         
     end
 
