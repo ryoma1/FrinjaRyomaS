@@ -1,9 +1,9 @@
------------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
-local widget = require( "widget" )
+
+
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
 
 -- Name the Scene
 sceneName = "splash_screen"
@@ -13,8 +13,6 @@ sceneName = "splash_screen"
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
 
---hide status bar
-display.setStatusBar(display.HiddenStatusBar)
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -25,14 +23,9 @@ local logo2
 local logo3
 local phoenixSounds = audio.loadSound("Sounds/phoenix.mp3")
 local phoenixSoundsChannel
-
---------------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
---------------------------------------------------------------------------------------------
--- The function that will go to the main menu 
-local function gotoMainMenu()
-    composer.gotoScene( "main_menu2" )
-end 
+------------------------------------------------------------------------------------
+-- Functions 
+------------------------------------------------------------------------------------
 
 local function PopUp()
 
@@ -42,7 +35,14 @@ local function PopUp()
     transition.to(logo2, {alpha = 0, time = 1100})
     transition.to(logo3, {alpha = 1, time = 1000})
 end
+--------------------------------------------------------------------------------------------
+-- LOCAL FUNCTIONS
+--------------------------------------------------------------------------------------------
 
+-- The function that will go to the main menu 
+local function gotoMainMenu()
+    composer.gotoScene( "main_menu2" )
+end
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -53,9 +53,6 @@ function scene:create( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -- set the background to be black
-    display.setDefault("background", 0, 0, 0)
 
     -- Insert the logo image
     logo1 = display.newImageRect("Images/glowingLogo1.png", 500, 500)
@@ -79,11 +76,13 @@ function scene:create( event )
 
     logo3.alpha = 0
 
-
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( logo1 )
+    sceneGroup:insert( logo2 )
+    sceneGroup:insert( logo3 )
 
 end -- function scene:create( event )
----------------------------------------------
-
+ 
 --------------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen
@@ -103,21 +102,17 @@ function scene:show( event )
        
     -----------------------------------------------------------------------------------------
 
-    elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then       
         -- start the splash screen music
         phoenixSoundsChannel = audio.play( phoenixSounds )
 
         timer.performWithDelay(1000, PopUp)
 
-        -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 3000, gotoMainMenu2)          
-        
+
+        -- go to the main menu screen 
+        timer.performWithDelay (3000, gotoMainMenu)
     end
-
 end --function scene:show( event )
-
-------------------------------------------------------------------------
-
 
 -----------------------------------------------------------------------------------------
 
@@ -140,7 +135,7 @@ function scene:hide( event )
     -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
         
-        -- stop the jungle sounds channel for this screen
+        -- stop the sound for this screen
         audio.stop(phoenixSoundsChannel)
     end
 
