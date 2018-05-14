@@ -8,6 +8,8 @@ display.setStatusBar(display.HiddenStatusBar)
 ----------------------------------------------
 
 local composer = require( "composer" )
+-- Use Wid
+local widget = require( "widget" )
 sceneName = "main_menu2"
  
 local scene = composer.newScene(sceneName)

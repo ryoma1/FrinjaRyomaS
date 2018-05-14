@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
+local widget = require( "widget" )
 
 -- Name the Scene
 sceneName = "splash_screen"
