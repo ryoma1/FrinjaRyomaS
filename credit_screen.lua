@@ -33,6 +33,13 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 local bkg_image
 
+-----------------------------------------------------
+--local functions
+-----------------------------------------------------
+-- Creating Transitioning Function back to main menu
+local function BackTransition( )
+    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
+end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -46,17 +53,42 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image
-   -- bkg_image = display.newImageRect("Images/level1_screen.png", display.contentWidth, display.contentHeight)
-    --bkg_image.x = display.contentCenterX
-    --bkg_image.y = display.contentCenterY
-    --bkg_image.width = display.contentWidth
-    --bkg_image.height = display.contentHeight
+    bkg_image = display.newImageRect("Images/CreditsScreen.png", display.contentWidth, display.contentHeight)
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
 
     -- Send the background image to the back layer so all other objects can be on top
-    --bkg_image:toBack()
+    bkg_image:toBack()
 
         -- Insert background image into the scene group in order to ONLY be associated with this scene
-    --sceneGroup:insert( bkg_image )    
+    sceneGroup:insert( bkg_image ) 
+
+     -- Creating Back Button
+    backButton = widget.newButton( 
+    {
+        -- Setting Position
+        x = display.contentWidth*1/8,
+        y = display.contentHeight*10/11,
+
+        -- Setting Dimensions
+         width = 400,
+         height = 96,
+
+        -- Setting Visual Properties
+        defaultFile = "Images/BackButtonUnpressed.png",
+        overFile = "Images/BackButtonPressed.png",
+
+        -- Setting Functional Properties
+        onRelease = BackTransition
+
+    } )
+
+    -----------------------------------------------------------------------------------------
+
+    -- Associating Buttons with this scene
+    sceneGroup:insert( backButton )   
 
 end --function scene:create( event )
 

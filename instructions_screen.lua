@@ -52,46 +52,46 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    --bkg_image = display.newImageRect("Images/Instructions Screen.png", display.contentWidth, display.contentHeight)
-    --bkg_image.x = display.contentCenterX
-    --bkg_image.y = display.contentCenterY
-    --bkg_image.width = display.contentWidth
-    --bkg_image.height = display.contentHeight
+    bkg_image = display.newImageRect("Images/Instructions Screen.png", display.contentWidth, display.contentHeight)
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
 
     -- Associating display objects with this scene 
-    --sceneGroup:insert( bkg_image )
+    sceneGroup:insert( bkg_image )
 
     -- Send the background image to the back layer so all other objects can be on top
-    --bkg_image:toBack()
+    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
     -----------------------------------------------------------------------------------------
 
     -- Creating Back Button
-   -- backButton = widget.newButton( 
-    --{
+    backButton = widget.newButton( 
+    {
         -- Setting Position
-      --  x = display.contentWidth*1/8,
-       -- y = display.contentHeight*15/16,
+        x = display.contentWidth*1/8,
+        y = display.contentHeight*10/11,
 
         -- Setting Dimensions
-        -- width = 1000,
-        -- height = 106,
+         width = 400,
+         height = 96,
 
         -- Setting Visual Properties
-        --defaultFile = "Images/Back Button Unpressed.png",
-        --overFile = "Images/Back Button Pressed.png",
+        defaultFile = "Images/BackButtonUnpressed.png",
+        overFile = "Images/BackButtonPressed.png",
 
         -- Setting Functional Properties
-        --onRelease = BackTransition
+        onRelease = BackTransition
 
-    --} )
+    } )
 
     -----------------------------------------------------------------------------------------
 
     -- Associating Buttons with this scene
-    --sceneGroup:insert( backButton )
+    sceneGroup:insert( backButton )
     
 end --function scene:create( event )
 

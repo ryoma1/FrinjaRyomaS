@@ -46,6 +46,11 @@ local function InstructionsScreenTransition( )
     composer.gotoScene( "instructions_screen", {effect = "fromBottom", time = 500})
 end    
 
+-- Creating Transitioning Function back to main menu
+local function BackTransition( )
+    composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
+end
+
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -127,6 +132,9 @@ function scene:create( event )
         } )
 
 
+    -----------------------------------------------------------------------------------------
+
+    -- Associating Buttons with this scene
     sceneGroup:insert( startButton )
      sceneGroup:insert( helpButton )
     sceneGroup:insert( creditButton )
